@@ -1,0 +1,18 @@
+   <form class="form__login">
+       <h4>Welcome to the Concentrix-Catalyst design directory</h4>
+       <small>Please, provide you credentials to access</small>
+            <div>
+                <label>Username</label>
+                <input type="text" placeholder="provide your username" name="username" [(ngModel)]="username">
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" placeholder="provide your password" name="pass" [(ngModel)]="password">
+            </div>
+        <div>
+            <button class="button button--block button--primary" type="submit" (click)="userLogin()">Access</button>
+        </div>
+        <section *ngIf="login && !username">
+            <p class="badge--error">You have entered wrong credentials, try again... It's free!</p>
+        </section>
+   </form>

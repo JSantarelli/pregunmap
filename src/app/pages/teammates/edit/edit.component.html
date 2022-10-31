@@ -1,0 +1,93 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="flex--between form__header form__header--fixed">
+        <h3>Edit pregunta</h3>
+        <span>
+            <button class="button button--primary" type="submit">Update</button>
+            <button class="button button--primary" type="reset">Reset</button>
+        </span>
+    </div>
+    <fieldset>
+        <legend>Basic info</legend>
+        <div>
+            <label>Name</label>
+            <input type="text" formControlName="name" placeholder="full name" required>
+        </div>
+        <div>
+            <label>Lastname</label>
+            <input type="text" formControlName="lastName" placeholder="full name" required>
+        </div>
+    
+        <div>
+            <label>Photo</label>
+            <input type="text" formControlName="photo" placeholder="paste URL" required>
+        </div>
+    </fieldset>
+    <fieldset>   
+        <legend>Contact info</legend>
+        <div>
+            <label>Country</label>
+            <select formControlName="country" placeholder="country" [(ngModel)]="selectedCountry.id" (change)="onSelect($any($event).target.value)">
+                <option value="0">--select your country--</option>
+                <option *ngFor="let country of catalystService.countries" [value]="country.name">{{ country.name }}
+            </option>
+            </select>
+        </div>
+        <div>
+            <label>City</label>
+            <select formControlName="city" placeholder="city" [(ngModel)]="selectedCity.id">
+                <option value="0">--select your city--</option>
+                <option *ngFor="let city of dropdownCity" [value]="city.name">{{ city.name }}</option>
+            </select>
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="email" formControlName="email" placeholder="email address">
+        </div>
+        <div>
+            <label>Phone</label>
+            <input type="number" formControlName="phone" placeholder="cel number">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Profile</legend>
+        <div>
+            <label>Guild</label>
+            <select formControlName="guild" placeholder="select your guild">
+                <option *ngFor="let guild of catalystService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
+            </select>
+        </div>
+        <div>
+            <label>Verticals</label>
+            <select formControlName="verticals" placeholder="verticals">
+                <option *ngFor="let vert of catalystService.verticals; let i = index" [value]="vert.name">{{ vert.name }}</option>
+            </select>
+            <textarea formControlName="otherVertical" placeholder="otherVertical" id="" name="" rows="1"></textarea>    
+        </div>
+        <div>
+            <label>Skills</label>
+            <span *ngFor="let skill of catalystService.skills; let i = index">
+                <input type="checkbox" [value]="skill.value" (change)="onCheckboxChange($event)">
+                <p>{{ skill.name }}</p>
+            </span>
+            <label>Other skill</label>
+            <textarea formControlName="otherSkill" placeholder="otherSkill" id="" name="" rows="1"></textarea>    
+        </div>
+        <div>
+            <label>Tools</label>
+            <span *ngFor="let tool of catalystService.tools; let i = index">
+                <input type="checkbox" [value]="tool.value" (change)="onToolsChange($event)">
+                {{ tool.name }}
+            </span>
+            <label>Other tools</label>
+            <textarea formControlName="otherTool" placeholder="otherTool" id="" name="" rows="1"></textarea>             
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Complementary info</legend>
+        <textarea formControlName="interests" placeholder="interests" id="" name="" rows="5"></textarea>             
+        <textarea formControlName="projects" placeholder="projects" id="" name="" rows="5"></textarea>             
+        <textarea formControlName="goToPerson" placeholder="goToPerson" id="" name="" rows="5"></textarea>             
+        <textarea formControlName="bio" placeholder="bio" id="" name="" rows="10"></textarea>             
+    </fieldset>
+</form>

@@ -1,0 +1,112 @@
+<form class="formGrid" [formGroup]="preguntaForm" (ngSubmit)="onSubmit($event)" novalidate>
+    <div class="flex--between form__header form__header--fixed">
+        <h3>Add pregunta</h3>
+        <span>
+            <button class="button button--primary" type="submit" [ngClass]="{ 'button--disabled' : !preguntaForm.valid }" [disabled]="!preguntaForm.valid">Create</button>
+            <button class="button button--primary" type="reset">Reset</button>
+        </span>
+    </div>
+
+<div class="tabSet">
+    <input type="radio" name="tabset" id="tab1" aria-controls="basic" checked>
+    <input type="radio" name="tabset" id="tab2" aria-controls="contact">
+    <input type="radio" name="tabset" id="tab3" aria-controls="profile">
+    <input type="radio" name="tabset" id="tab4" aria-controls="complementary">
+    <nav class="flex flex--between">
+        <div class="tab">
+            <!-- Tab 1 -->
+            <label for="tab1">Basic Info</label>
+        </div>
+        <div class="tab">
+            <!-- Tab 2 -->
+            <label for="tab2">Contact Info</label>
+        </div>
+        <div class="tab">
+            <!-- Tab 3 -->
+            <label for="tab3">Profile Info</label>
+        </div>
+        <div class="tab">
+            <!-- Tab 4 -->
+            <label for="tab4">Complementary Info</label>
+        </div>
+    </nav>
+
+    <div class="tab-panels">
+        <section id="basic" class="tab-panel">
+            <fieldset>
+                <legend>Basic info</legend>
+                <div class="input__group">
+                    <label>Titulo</label>
+                    <input type="text" formControlName="titulo" placeholder="full name" required>
+                </div>
+                <div class="input__group">
+                    <label>Respuestas</label>
+                    <input type="text" formControlName="respuestas" placeholder="full name" required>
+                </div>
+            
+                <div class="input__group">
+                    <label>foto</label>
+                    <input type="text" formControlName="foto" placeholder="paste URL" required>
+                </div>
+            </fieldset>
+      </section>
+      <section id="contact" class="tab-panel">
+        <fieldset>   
+        <legend>Contact info</legend>
+
+        <div class="input__group">
+            <label>Country</label>
+            <select formControlName="provincia" placeholder="provincia" [(ngModel)]="selectedCountry.id" (change)="onSelect($any($event).target.value)">
+                <option value="0">--seleccione provincia--</option>
+                <option *ngFor="let country of catalystService.countries" [value]="country.name">{{ country.name }}
+            </option>
+            </select>
+        </div>
+        <div class="input__group">
+            <label>City</label>
+            <select formControlName="ciudad" placeholder="city" [(ngModel)]="selectedCity">
+                <option value="0">--seleccione ciudad--</option>
+                <option *ngFor="let city of dropdownCity" [ngValue]="city">{{ city.name }}</option>
+            </select>
+        </div>
+        <ng-container *ngFor="let city of dropdownCity">
+            <ng-container *ngIf="selectedCity.name === city.name">
+                <input formControlName="lat" type="text" [(ngModel)]="selectedCity.lat" [value]="selectedCity.lat"/>
+                <input formControlName="lng" type="text" [(ngModel)]="selectedCity.lng" [value]="selectedCity.lng"/>
+            </ng-container>
+        </ng-container>
+        {{ selectedCity.name | json }}
+        {{ selectedCity.lat | json }}
+        {{ selectedCity.lng | json }}
+        <div class="input__group">
+            <label>Puntaje</label>
+            <input type="number" formControlName="puntaje" placeholder="ingrese puntaje">
+        </div>
+        <div class="input__group">
+            <label>Nivel</label>
+            <input type="number" formControlName="nivel" placeholder="ingrese nivel">
+        </div>
+        </fieldset>
+        </section>
+        <section id="profile" class="tab-panel">
+            <fieldset>
+                <legend>Profile</legend>
+                <div class="input__group">
+                    <label>Categoría</label>
+                    <select formControlName="guild" placeholder="select your guild">
+                        <option *ngFor="let guild of catalystService.guilds; let i = index" [value]="guild.name">{{ guild.name }}</option>
+                    </select>
+                </div>            
+            </fieldset>
+        </section>
+        <section id="complementary" class="tab-panel">
+            <fieldset>
+                <legend>Complementary info</legend>
+                <textarea formControlName="ayuda" placeholder="redacte ayuda" id="" name="" rows="5"></textarea>             
+                <textarea formControlName="detalle" placeholder="redacte detalle" id="" name="" rows="5"></textarea>                        
+            </fieldset>
+        </section>
+    </div>
+</div>
+</form>
+

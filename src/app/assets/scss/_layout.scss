@@ -1,0 +1,70 @@
+#layout[type=sidepanel] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(60vw , 1fr));
+    grid-template-rows: 2fr;
+    grid-gap: 20px;
+};
+
+#header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+#body {
+    transform: translateY(60px);
+    grid-column: 1;
+    grid-row: 2;
+    max-height: 100vh;
+    overflow-y: scroll;
+    &.login__bg {
+        height: 100vh;
+        width: 100vw;
+        transform: none;
+        grid-row: 1;
+        background-color: $colorPrimario;
+    }
+    // mix-blend-mode: luminosity;
+}
+
+#sidepanel {
+    transform: translateY(80px);
+    grid-column: 2;
+    grid-row: 2;
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 75vw;
+}
+
+// Forms tabs
+.tabSet > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
+  
+  .tabSet .tab-panel {
+    display: none;
+  }
+  
+  .tabSet > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabSet > input:nth-child(2):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabSet > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(3),
+  .tabSet > input:nth-child(4):checked ~ .tab-panels > .tab-panel:nth-child(4),
+  .tabSet > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(5),
+  .tabSet > input:nth-child(6):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+  }
+  
+  .tabSet > input:first-child:checked ~ nav > .tab:first-child,
+  .tabSet > input:nth-child(2):checked ~ nav > .tab:nth-child(2),
+  .tabSet > input:nth-child(3):checked ~ nav > .tab:nth-child(3),
+  .tabSet > input:nth-child(4):checked ~ nav > .tab:nth-child(4),
+  .tabSet > input:nth-child(5):checked ~ nav > .tab:nth-child(5),
+  .tabSet > input:nth-child(6):checked ~ nav > .tab:nth-child(6) {
+    border-bottom: 2px solid $colorTerciario;
+    label {
+        color: black;
+        opacity: 1;
+    }
+  }
+  
+  

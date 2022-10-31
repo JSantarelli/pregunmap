@@ -1,0 +1,59 @@
+<span class="flex--center" [ngClass]="{ 'expandSearch' : searchBar }">
+    <input  *ngIf="searchBar" class="searchBar" type="text" name="search" [(ngModel)]="searchText" placeholder="">
+    <button *ngIf="searchBar" class="button button--lg button--orange" (click)="hideSearchBar()">X</button>
+</span>
+<section class="grid" *ngIf="login">
+    <ng-container *ngFor="let pregunta of Pregunta| filter:searchText ; let i = index">
+    <div #card class="card card--visible" [ngClass]="{'expandCard' : pregunta.detalle }" (click)="viewPregunta(pregunta, i)">
+        <div class="card__overlay card__overlay--{{ pregunta.guild }}">
+            <span class="btn__container">
+                <i class="icon trash" (click)="removePregunta(pregunta)"></i>
+                <i class="icon pencil" (click)="editPregunta(pregunta)"></i>
+                <!-- <button class="button button--orange" routerLink="/edit/{{ pregunta.id }}">Update</button> -->
+                <i class="icon plus" (click)="viewPregunta(pregunta, i)"></i>
+                <!-- <button class="button button--orange" routerLink="/detail/{{ pregunta.id }}" (click)="viewPregunta(pregunta)">Detail</button> -->
+                <!-- <button class="button button--orange" [routerLink]="[pregunta.id]">Detail</button> -->
+            </span>
+        </div>
+        <img class="card__img border border-{{ pregunta.guild }}" src="{{ pregunta.photo }}" alt=""> 
+        
+        <section class="textBlock">
+            <div class="text-group">
+                <div>
+                    <p class="card__prefix" [ngClass]="{ 'brand' : pregunta.guild === 'brand', 'omnichannel' : pregunta.guild === 'omnichannel', 'digital' : pregunta.guild === 'digital', 'product' : pregunta.guild === 'product', 'hcd' : pregunta.guild === 'HCD' }">
+                        {{ pregunta.guild }}
+                    </p>
+                    <h3 class="title">{{ pregunta.titulo }} {{ pregunta.respuestas }}</h3>
+                    <p class="subtitle">{{ pregunta.verticals }} {{ pregunta.otherVertical }}</p>
+                    <p class="subtitle">{{ pregunta.email }}</p>
+                </div>
+            </div>
+            <div class="detailGrid"> 
+                <ng-container *ngIf="pregunta.detalle">
+                        <div class="text-group--sm">
+                            <label>Skills</label>
+                            <p class="subtitle">{{ pregunta.skills }} {{ pregunta.otherSkill }}</p>
+                        </div>
+                        <div class="text-group--sm">
+                            <label>Phone</label>
+                            <p class="subtitle">{{ pregunta.phone }}</p>        
+                        </div>
+                        <div class="text-group--sm">
+                            <label>Tools</label>
+                            <p class="subtitle">{{ pregunta.tools }} {{ pregunta.otherTool }}</p>
+                        </div>
+                        <div class="text-group--sm">
+                            <label>City</label>
+                            <p class="subtitle">{{ pregunta.city }}, {{ pregunta.country }}</p>   
+                        </div>
+                        <div class="text-group--sm">
+                            <label>Bio</label>
+                            <p class="subtitle">{{ pregunta.bio }}</p>
+                        </div>
+                </ng-container>
+            </div>
+        </section>
+    </div>
+    </ng-container>
+
+</section>

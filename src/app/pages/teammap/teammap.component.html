@@ -1,0 +1,11 @@
+<button (click)="showPreguntas()">>show preguntas!</button>
+<ul>
+  <li *ngFor="let p of Pregunta">
+    <p>{{ p.titulo }}</p>
+  </li>
+</ul>
+<div class="map-container">
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
+  </div>

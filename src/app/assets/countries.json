@@ -1,0 +1,94 @@
+{
+    "countries" : [
+        {
+            "id": 1,
+            "name": "AR",
+            "flag": ""
+        },
+        {
+            "id": 2,
+            "name": "PA",
+            "flag": ""
+        },
+        {
+            "id": 3,
+            "name": "CO",
+            "flag": ""
+        },
+        {
+            "id": 4,
+            "name": "VE",
+            "flag": ""
+        },
+        {
+            "id": 5,
+            "name": "TW",
+            "flag": ""
+        },
+        {
+            "id": 6,
+            "name": "PH",
+            "flag": ""
+        },
+        {
+            "id": 7,
+            "name": "SK",
+            "flag": ""
+        },
+        {
+            "id": 8,
+            "name": "TR",
+            "flag": ""
+        },
+        {
+            "id": 9,
+            "name": "UK",
+            "flag": ""
+        },
+        {
+            "id": 10,
+            "name": "JP",
+            "flag": ""
+        },
+        {
+            "id": 11,
+            "name": "AU",
+            "flag": ""
+        },
+        {
+            "id": 12,
+            "name": "IE",
+            "flag": ""
+        }
+    ],
+    "cities" : [
+        {
+            "id": 1,
+            "country": "AR",
+            "name": "Puerto Bermejo",
+            "lat": "-26.93173",
+            "lng": "-58.50538"
+          },
+          {
+            "id": 1,
+            "country": "AR",
+            "name": "Pueblo Libertador",
+            "lat": "-30.22087",
+            "lng": "-59.38981"
+          },
+          {
+            "id": 2,
+            "country": "US",
+            "name": "Union City",
+            "lat": "40.19938",
+            "lng": "-84.80353"
+          },
+          {
+            "id": 2,
+            "country": "US",
+            "name": "New Century, KS",
+            "lat": "38.82253",
+            "lng": "-94.89971"
+          }
+    ]
+}

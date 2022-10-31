@@ -1,0 +1,37 @@
+<!-- <ng-container *ngIf="sidebar == true ; then template"></ng-container> -->
+<main id="layout" type="sidepanel">
+<section *ngIf="login" id="header">
+  <nav>
+    <ul>
+      <app-logo id="catalystLogo"></app-logo>
+      <li>
+        <a href="" routerLink="/list-pregunta">Who we are</a>
+      </li>
+      <li>
+        <a href="" routerLink="/map" (click)="showMap()">Team map</a>
+      </li>
+      <li>
+        <a href="" routerLink="/list-pregunta">Team dashboard</a>
+      </li>
+      <li>
+        <button class="button button--orange" [ngClass]="{'button--disabled' : searchBar }" (click)="newBarValue()">Search</button>
+        <!-- <button *ngIf="searchBar" class="button button--orange" (click)="hideSearchBar()">Stop searching</button> -->
+        <button class="button button--primary" (click)="goCreatePregunta()">+</button>
+    </ul>
+  </nav>
+</section>
+  <section id="body" [ngClass]="{'login__bg' : !login}">
+
+    <div *ngIf="!login" class="modal">
+      <app-login></app-login>
+    </div>
+
+    <app-list (sidePanelEvent)="receiveSidePanel($event)"></app-list>
+    <!-- <app-teammap *ngIf="login"></app-teammap> -->
+  </section>
+  <aside id="sidepanel" *ngIf="sidePanel">
+    <button class="button button--orange button--floating" (click)="closeSidepanel()">X</button>
+    <router-outlet>
+    </router-outlet>
+  </aside>
+</main>
